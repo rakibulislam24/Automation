@@ -2,6 +2,7 @@ package Walmart;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -39,7 +40,7 @@ public class WalmartTesting {
         }
 
 
-        @Test(enabled = true)
+        @Test(enabled = false)
         public void searchBox() throws InterruptedException {
             driver.get(walmartURL);
             driver.findElement(By.id("global-search-input")).sendKeys("masks");
@@ -52,6 +53,30 @@ public class WalmartTesting {
 
 
         }
+
+        @Test(enabled = false)
+        public void searchBox1() throws InterruptedException {
+            driver.get(walmartURL);
+            driver.findElement(By.id("global-search-input")).sendKeys("shampoo");
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//*[@id=\"global-search-submit\"]/span")).click();
+            Thread.sleep(6000);
+            String expectedTittle = "shampoo - Walmart.com";
+            String actualTittle= driver.getTitle();
+            Assert.assertEquals("","","Test fail");
+        }
+
+
+    @Test(enabled = true)
+    public void login(){
+            driver.get(walmartURL);
+            driver.findElement(By.xpath("//*[@id=\"hf-account-flyout\"]/span/span/span[2]")).click();
+            driver.findElement(By.xpath("//*[@id=\"vh-account-menu-root\"]/div[2]/div/a[1]/div/span/div")).click();
+            driver.findElement(By.xpath("//*[@id=\"email\"]"));
+            driver.findElement(By.xpath("//*[@id=\"password\"]"));
+
+
+    }
 
         @AfterMethod
         public void tearDown(){
